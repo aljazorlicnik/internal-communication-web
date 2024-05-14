@@ -1,0 +1,9 @@
+<h2><%= @message.title %></h2>
+<p><%= @message.content %></p>
+
+<% if @message.file.present? %>
+  <p>
+    <strong>File:</strong>
+    <%= link_to @message.file.filename, @message.file.url %>
+  </p>
+<% end %>

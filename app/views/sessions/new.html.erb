@@ -1,0 +1,14 @@
+<h1>Log In </h1>
+
+<%= form_with url: sign_in_path do |f| %>
+
+    <br><%= f.label :Email %>
+    <br><%= f.text_field :email %>
+
+    <br><%= f.label :Password %>
+    <br><%= f.password_field :password %>
+
+    <br><br><%= f.submit "Sign in" %>
+<% end %>
+
+<br><%= link_to "Sign up", sign_up_path %>

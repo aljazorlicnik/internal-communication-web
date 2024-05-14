@@ -1,0 +1,21 @@
+<h1>Overview</h1>
+
+<%= link_to 'New Message', new_message_path, class: 'new-message-link' %>
+
+<% @messages.each do |message| %>
+  <div class="message-container">
+    <h2><%= message.title %></h2>
+    <p><%= message.content %></p>
+
+    <% if message.file.present? %>
+      <p>
+        <% if message.file.content_type.start_with?('image/') %>
+          <%= image_tag message.file.url, alt: message.file.filename %>
+        <% else %>
+          <%= link_to message.file.filename, message.file.url %>
+        <% end %>
+      </p>
+    <% end %>
+    <%= link_to 'Open Message', message_path(message), target: 'each_path', class: 'open-message-button' %>
+  </div>
+<% end %>

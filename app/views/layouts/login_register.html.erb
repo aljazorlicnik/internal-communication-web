@@ -1,0 +1,19 @@
+<!-- app/views/layouts/login_register.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internal communication - login</title>
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple-v1.css">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+</body>
+</html>
