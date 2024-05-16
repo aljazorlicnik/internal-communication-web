@@ -3,19 +3,29 @@
 <%= link_to 'New Message', new_message_path, class: 'new-message-link' %>
 
 <% @messages.each do |message| %>
-  <div class="message-container">
-    <h2><%= message.title %></h2>
-    <p><%= message.content %></p>
-
-    <% if message.file.present? %>
-      <p>
-        <% if message.file.content_type.start_with?('image/') %>
-          <%= image_tag message.file.url, alt: message.file.filename %>
-        <% else %>
-          <%= link_to message.file.filename, message.file.url %>
-        <% end %>
-      </p>
-    <% end %>
-    <%= link_to 'Open Message', message_path(message), target: 'each_path', class: 'open-message-button' %>
-  </div>
-<% end %>
+    <div class="message-container">
+      <h2><%= message.title %></h2>
+      <p><%= message.content %></p>
+  
+      <% if message.file.present? %>
+        <p>
+          <% if message.file.content_type.start_with?('image/') %>
+            <%= image_tag message.file.url, alt: message.file.filename %>
+          <% else %>
+            <%= link_to message.file.filename, message.file.url %>
+          <% end %>
+        </p>
+      <% end %>
+      <% if message.users.present? %>
+        <p>
+          <strong>Read by:</strong>
+          <ul>
+            <% message.users.each do |user| %>
+              <li><%= user.email %></li>
+            <% end %>
+          </ul>
+        </p>
+      <% end %>
+      <%= link_to 'View message', each_path(message.id) %>
+    </div>
+  <% end %>

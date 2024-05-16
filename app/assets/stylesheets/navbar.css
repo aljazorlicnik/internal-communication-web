@@ -13,7 +13,7 @@
   
   .nav-item {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 5px;
   }
   
   .nav-link {
@@ -31,5 +31,4 @@
     color: #fff;
     text-decoration: none;
     padding: 5px 10px;
-    margin-left: 10%;
   }

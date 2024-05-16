@@ -1,16 +1,15 @@
 class SessionsController < ApplicationController
   layout 'login_register'
-  def new
-  end
 
   def create
     user = User.find_by(email: params[:email])
 
     if user.present? && user.authenticate(params[:password])
-       session[:user_id] = user.id
-       redirect_to home_path
+      session[:user_id] = user.id
+      redirect_to home_path # Redirect to the home page or any other desired page
     else
-        render :new
+      flash.now[:alert] = 'Invalid email or password'
+      render :new
     end
   end
 

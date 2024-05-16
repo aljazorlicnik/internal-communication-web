@@ -1,3 +1,5 @@
+# back to messages
+
 <h2><%= @message.title %></h2>
 <p><%= @message.content %></p>
 
@@ -5,5 +7,16 @@
   <p>
     <strong>File:</strong>
     <%= link_to @message.file.filename, @message.file.url %>
+  </p>
+<% end %>
+
+<% if @message.users.present? %>
+  <p>
+    <strong>Users:</strong>
+    <ul>
+      <% @message.users.each do |user| %>
+        <li><%= user.email %></li>
+      <% end %>
+    </ul>
   </p>
 <% end %>

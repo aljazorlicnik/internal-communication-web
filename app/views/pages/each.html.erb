@@ -1,0 +1,36 @@
+<h1><%= @message.title %></h1>
+<p><%= @message.content %></p>
+
+<% if @message.file.present? %>
+  <p>
+    <% if @message.file.content_type.start_with?('image/') %>
+      <%= image_tag @message.file.url, alt: @message.file.filename, style: "width: 100%" %>
+    <% else %>
+      <%= link_to @message.file.filename, @message.file.url %>
+    <% end %>
+  </p>
+<% end %>
+
+<h1>Edit Message</h1>
+<%= form_with(model: @message, url: message_path(@message), method: :patch, local: true, multipart: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <br><%= form.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :content %>
+    <br><%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Delete', message_path(@message), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn btn-danger' %>
